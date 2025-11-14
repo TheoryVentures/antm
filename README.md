@@ -97,27 +97,15 @@ pip install -r example/requirements.txt
 
 See [`example/SETUP.md`](example/SETUP.md) for detailed instructions and troubleshooting.
 
-### 2. Generate the Dataset (Retail Universe)
+### 2. Inspect the Dataset
 
-Structured tables come from the Retail Universe generator. Place that repo next to this starter and run the bundled script:
-
-```bash
-# In a sibling directory to this repo
-git clone https://github.com/TheoryVentures/Retail-Universe.git
-cd Retail-Universe
-uv sync
-uv run python scripts/generate_base_data.py
-```
-
-The script writes all 24 Parquet tables to `Retail-Universe/data/tpcds_1gb/`. Copy them into this starter so the notebook can find `dataset/parquet/`:
+All required files ship inside this repo under `dataset/`:
 
 ```bash
-cd ../modeler-hackathon-starter
-mkdir -p dataset/parquet
-cp ../Retail-Universe/data/tpcds_1gb/*.parquet dataset/parquet/
+ls dataset
 ```
 
-Need logs or PDFs too? Follow the guides in the `Retail-Universe/examples/` folder (e.g., `examples/log_generation/`) and copy the outputs into `dataset/logs/` and `dataset/pdfs/`.
+You'll use these Parquet tables, logs, and PDFs directly in the notebook—no extra generation steps needed.
 
 ### 3. Open the Tools Guide
 
