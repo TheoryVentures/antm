@@ -172,10 +172,22 @@ row_index,col_1,col_2,col_3,col_4,col_5
 
 **Key Points:**
 - `index` starts at 0 and increments with each question.
-- `a1`–`a5` correspond to the five answer slots per question (numeric, boolean, float, string, string).
-- Fill unused slots with an empty string if a question requires fewer answers.
+- `a1`–`a5` are just five contiguous answer slots from left to right. The question files tell you which data type belongs in each slot for a given prompt.
+- Leave unused slots blank if a question requires fewer answers.
 
-See `sample_submission.csv` for the up-to-date template.
+**Example:** Training Question 1 (“the warehouse that causes revenue drops”) lists the answers in this order: warehouse, category, revenue impact. Keep them contiguous in that same left-to-right order:
+- `warehouse_sk = 3` → `col_1`
+- `category = Electronics` → `col_2`
+- `revenue_impact = -17958.17` → `col_3`
+
+Columns 4 and 5 stay blank because that prompt only requires three answers:
+
+```csv
+row_index,col_1,col_2,col_3,col_4,col_5
+0,3,Electronics,-17958.17,,
+```
+
+See `sample_submission.csv` for an up-to-date template.
 
 ---
 
