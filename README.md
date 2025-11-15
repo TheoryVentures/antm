@@ -244,5 +244,4 @@ See `sample_submission.csv` for the up-to-date template.
 
 ---
 
-*Dataset powered by [Retail Universe](https://github.com/TheoryVentures/Retail-Universe)*  
 *Built by Theory Ventures*

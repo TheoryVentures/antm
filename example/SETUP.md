@@ -15,33 +15,37 @@ This prevents common issues with system Python installations (especially on macO
 ```bash
 git clone https://github.com/theoryvc/modeler-hackathon-starter.git
 cd modeler-hackathon-starter
-cd example
 ```
 
-2. Create and activate a virtual environment:
+2. Create and activate a virtual environment (from the repo root):
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-3. Install dependencies:
+3. Upgrade `pip` and install the notebook dependencies:
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r example/requirements.txt
 ```
 
 4. (Optional) Inspect the dataset (already included at `dataset/` in the repo root):
 ```bash
-cd ..
 ls dataset
-cd example
 ```
 
-5. (Optional) Register the environment as a Jupyter kernel:
+5. Register the environment as a Jupyter kernel so VS Code/Jupyter can pick it automatically:
 ```bash
-python -m ipykernel install --user --name "modeler-starter" --display-name "Python 3 (Modeler Starter)"
+python -m ipykernel install --user --name "modeler-default" --display-name "Python 3 (Modeler Default)"
 ```
 
-6. Launch the notebook:
+6. (Optional) Remove stale kernels that point to deleted Python installs:
 ```bash
-jupyter notebook tools_guide.ipynb
+jupyter kernelspec list
+jupyter kernelspec uninstall python3
+```
+
+7. Launch the notebook (still from the repo root):
+```bash
+jupyter notebook example/tools_guide.ipynb
 ```
