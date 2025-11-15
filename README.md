@@ -38,7 +38,6 @@ This script will:
 - Create a Python virtual environment
 - Install required packages (`google-cloud-storage`)
 - Download all dataset files to `./dataset/`
-- Takes ~2-5 minutes depending on your connection
 
 **The dataset is NOT included in this Git repository.** You must run this script before proceeding.
 
