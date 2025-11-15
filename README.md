@@ -38,16 +38,23 @@ cd antm
 
 ### 2. Download the Dataset (REQUIRED FIRST STEP AFTER CLONING)
 
-**Run this script to download the complete dataset from Cloud Storage:**
+**Run this script to download the complete dataset ZIP from Cloud Storage:**
 
 ```bash
 ./download_dataset.sh
 ```
 
-This script will:
-- Create a Python virtual environment
-- Install required packages (`google-cloud-storage`)
-- Download all dataset files to `./dataset/`
+This script:
+- Pulls `antm.zip` from the public GCP bucket `antm-dataset`
+- Extracts everything into `./dataset/`
+- Leaves the ZIP in the repo root so you can re-extract quickly if needed
+
+**Prefer to download manually?** Grab the file directly and unzip it:
+
+```bash
+curl -L -o antm.zip https://storage.googleapis.com/antm-dataset/antm.zip
+unzip -o antm.zip -d dataset
+```
 
 **The dataset is NOT included in this Git repository.** You must run this script before proceeding.
 

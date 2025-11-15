@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Dataset Download Script for ANTM Hackathon
-# This script downloads the complete dataset from GCP Cloud Storage
+# This script downloads antm.zip from the public GCP bucket
 
 set -e  # Exit on error
 
@@ -20,97 +20,73 @@ fi
 echo "✓ Python 3 found: $(python3 --version)"
 echo ""
 
-# Create virtual environment if it doesn't exist
-if [ ! -d ".venv" ]; then
-    echo "Creating Python virtual environment..."
-    python3 -m venv .venv
-    echo "✓ Virtual environment created"
-else
-    echo "✓ Virtual environment already exists"
-fi
-echo ""
-
-# Activate virtual environment
-echo "Activating virtual environment..."
-source .venv/bin/activate
-echo "✓ Virtual environment activated"
-echo ""
-
-# Install required packages
-echo "Installing required packages..."
-pip install --quiet --upgrade pip
-pip install --quiet google-cloud-storage
-echo "✓ Packages installed"
-echo ""
-
-# Run the download script
+# Run the download + extract script
 echo "============================================================"
-echo "Downloading dataset from GCP bucket..."
+echo "Downloading antm.zip from GCP bucket..."
 echo "============================================================"
 echo ""
 
 python3 << 'EOF'
-from google.cloud import storage
 from pathlib import Path
+import shutil
 import sys
+import urllib.request
+import zipfile
 
-def download_bucket_contents(bucket_name, destination_directory="dataset"):
-    """Download all files from the GCP bucket to local dataset directory."""
-    
-    print(f"Connecting to bucket: {bucket_name}")
-    
+BUCKET_NAME = "antm-dataset"
+ZIP_NAME = "antm.zip"
+ZIP_URL = f"https://storage.googleapis.com/{BUCKET_NAME}/{ZIP_NAME}"
+ZIP_PATH = Path(ZIP_NAME)
+DEST_DIR = Path("dataset")
+CHUNK_SIZE = 1024 * 1024  # 1 MiB
+
+def download_zip() -> None:
+    print(f"Fetching {ZIP_NAME} from bucket: {BUCKET_NAME}")
     try:
-        storage_client = storage.Client.create_anonymous_client()
-        bucket = storage_client.bucket(bucket_name)
-        
-        Path(destination_directory).mkdir(parents=True, exist_ok=True)
-        print(f"✓ Created directory: {destination_directory}/")
-        print("")
-        
-        print("Fetching file list...")
-        blobs = list(bucket.list_blobs())
-        
-        if not blobs:
-            print("⚠️  No files found in bucket")
-            return
-        
-        print(f"Found {len(blobs)} files to download")
-        print("")
-        
-        # Download each blob
-        success_count = 0
-        for i, blob in enumerate(blobs, 1):
-            try:
-                local_path = Path(destination_directory) / blob.name
-
-                local_path.parent.mkdir(parents=True, exist_ok=True)
-                
-                blob.download_to_filename(str(local_path))
-                
-                size_mb = blob.size / (1024 * 1024)
-                print(f"  [{i}/{len(blobs)}] ✓ {blob.name} ({size_mb:.2f} MB)")
-                
-                success_count += 1
-                
-            except Exception as e:
-                print(f"  [{i}/{len(blobs)}] ✗ Failed to download {blob.name}: {e}")
-        
-        print("")
-        print("============================================================")
-        print(f"Download complete: {success_count}/{len(blobs)} files")
-        print(f"Dataset location: ./{destination_directory}/")
-        print("============================================================")
-        
-    except Exception as e:
-        print(f"❌ Error: {e}")
-        print("")
-        print("If you see an authentication error, the bucket may not be public.")
-        print("Run: gcloud auth application-default login")
+        with urllib.request.urlopen(ZIP_URL) as response, ZIP_PATH.open("wb") as fh:
+            total = int(response.headers.get("Content-Length", 0))
+            downloaded = 0
+            while True:
+                chunk = response.read(CHUNK_SIZE)
+                if not chunk:
+                    break
+                fh.write(chunk)
+                downloaded += len(chunk)
+                if total:
+                    percent = (downloaded / total) * 100
+                    print(f"  -> {downloaded / 1_048_576:.2f} MiB / {total / 1_048_576:.2f} MiB ({percent:.1f}%)", end="\r")
+        if total:
+            print("")
+        print(f"✓ Downloaded {ZIP_NAME} ({downloaded / 1_048_576:.2f} MiB)")
+    except Exception as exc:
+        print(f"❌ Error downloading {ZIP_URL}: {exc}")
         sys.exit(1)
 
+def extract_zip() -> None:
+    if DEST_DIR.exists():
+        print("⚠️  Removing existing dataset/ directory to ensure a clean extract")
+        shutil.rmtree(DEST_DIR)
+    DEST_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"Extracting into {DEST_DIR}/ ...")
+    try:
+        with zipfile.ZipFile(ZIP_PATH, "r") as zip_file:
+            zip_file.extractall(DEST_DIR)
+        print("✓ Extraction complete")
+    except zipfile.BadZipFile as exc:
+        print(f"❌ The downloaded ZIP appears to be corrupted: {exc}")
+        sys.exit(1)
+
+def main() -> None:
+    download_zip()
+    extract_zip()
+    print("")
+    print("============================================================")
+    print(f"Dataset ready in ./{DEST_DIR}/")
+    print("You can re-extract by running unzip again without re-downloading.")
+    print("============================================================")
+
 if __name__ == "__main__":
-    BUCKET_NAME = "antm-dataset"
-    download_bucket_contents(BUCKET_NAME, "dataset")
+    main()
 EOF
 
 echo ""
