@@ -18,7 +18,7 @@ We all have our favorite frameworks and "hobby horses." Are you convinced that D
 **The challenge:** Reliably extract, transform, and reason over complex, messy, and diverse data that simulates real enterprise environments.
 
 You'll work with:
-- Structured data (24 database tables in Parquet format)
+- Structured data (Tables in Parquet format)
 - Unstructured data (PDFs with contracts, invoices, policies)  
 - Logs (JSONL event streams)
 
