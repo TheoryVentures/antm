@@ -132,25 +132,6 @@ modeler-hackathon-starter/
 
 ---
 
-## Understanding the Data
-
-### Three Types of Data
-
-**1. Structured Data (Parquet Files)**
-- 24 tables: customers, sales, items, stores, etc.
-- Query with DuckDB (fast SQL on Parquet)
-- Example questions: Aggregations, joins, time-series analysis
-
-**2. Unstructured Data (PDFs)**
-- Contracts, policies, invoices
-- Extract with PDF parsers or LanceDB (semantic search)
-- Example questions: Extract costs, dates, terms
-
-**3. Logs (JSONL Files)**
-- Clickstreams, experiments, events
-- Parse with pandas, DuckDB, or LanceDB
-- Example questions: Count events, analyze patterns, correlations
-
 ### Tool Selection
 
 | Tool | Use For | Example |
@@ -193,27 +174,26 @@ See `sample_submission.csv` for the up-to-date template.
 ### Rounds Overview
 
 **Training Round** (12:30 PM - 3:00 PM)
-- 10 questions with answers provided
+- Questions with answers provided
 - Practice understanding the dataset
 - Test your approach
 - No submission required
 
 **Round 1** (3:00 PM - 4:15 PM)
-- 15 questions without answers
+- Questions without answers
 - Submit your answers via the platform
 - Real-time leaderboard
 
 **Round 2** (4:15 PM - 5:30 PM)
-- 15 questions without answers
+- Questions without answers
 - Submit your answers via the platform
 - Real-time leaderboard
 
 **Round 3** (5:30 PM - 6:00 PM)
-- 10 questions without answers
+- Questions without answers
 - Submit your answers via the platform
 - Real-time leaderboard
 - Determines final rankings
-- Winners announced at 7:30 PM
 
 ---
 
