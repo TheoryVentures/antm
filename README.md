@@ -29,7 +29,14 @@ You'll work with:
 
 ## Quick Start
 
-### 1. Download the Dataset (REQUIRED FIRST STEP)
+### 1. Clone this Repository
+
+```bash
+git clone https://github.com/TheoryVentures/antm.git
+cd antm
+```
+
+### 2. Download the Dataset (REQUIRED FIRST STEP AFTER CLONING)
 
 **Run this script to download the complete dataset from Cloud Storage:**
 
@@ -44,7 +51,7 @@ This script will:
 
 **The dataset is NOT included in this Git repository.** You must run this script before proceeding.
 
-### 2. Verify the Dataset
+### 3. Verify the Dataset
 
 Check that the dataset downloaded correctly:
 
@@ -54,7 +61,7 @@ ls dataset/
 
 You should see parquet files, logs, and PDFs
 
-### 3. (Optional) Open the Tools Guide
+### 4. (Optional) Open the Tools Guide
 
 ```bash
 jupyter notebook example/tools_guide.ipynb
@@ -66,7 +73,7 @@ This notebook demonstrates:
 - Understanding the question format
 - Creating your submission file
 
-### 4. (Optional) Set Up OpenRouter for AI Models
+### 5. (Optional) Set Up OpenRouter for AI Models
 
 OpenRouter provides access to Claude, GPT-4, Gemini, and other models through one API.
 
@@ -90,7 +97,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-### 5. (Optional) Use the MCP Server
+### 6. (Optional) Use the MCP Server
 
 Contestants have access to a pre-configured **MCP (Model Context Protocol) server** that provides direct access to the hackathon dataset via MotherDuck. This allows you to integrate the dataset directly into AI assistants (Claude, ChatGPT, etc.) or custom agents.
 
