@@ -23,7 +23,7 @@ echo ""
 # Create virtual environment if it doesn't exist
 if [ ! -d ".venv" ]; then
     echo "Creating Python virtual environment..."
-    python3 -m venv .venv
+    uv venv
     echo "✓ Virtual environment created"
 else
     echo "✓ Virtual environment already exists"
@@ -38,8 +38,8 @@ echo ""
 
 # Install required packages
 echo "Installing required packages..."
-pip install --quiet --upgrade pip
-pip install --quiet google-cloud-storage
+uv pip install --quiet --upgrade pip
+uv pip install --quiet google-cloud-storage
 echo "✓ Packages installed"
 echo ""
 
@@ -121,3 +121,4 @@ echo ""
 echo "Your dataset is ready in the ./dataset/ directory"
 echo "You can now proceed with the hackathon!"
 echo ""
+
