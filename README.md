@@ -24,60 +24,6 @@ You'll work with:
 
 ---
 
-## Competition Structure
-
-### Rounds Overview
-
-**Training Round** (12:30 PM - 3:00 PM)
-- 10 questions with answers provided
-- Practice understanding the dataset
-- Test your approach
-- No submission required
-
-**Round 1** (3:00 PM - 4:15 PM)
-- 15 questions without answers
-- Submit your answers via the platform
-- Real-time leaderboard
-
-**Round 2** (4:15 PM - 5:30 PM)
-- 15 questions without answers
-- Submit your answers via the platform
-- Real-time leaderboard
-
-**Round 3** (5:30 PM - 6:00 PM)
-- 10 questions without answers
-- Submit your answers via the platform
-- Real-time leaderboard
-- Determines final rankings
-- Winners announced at 7:30 PM
-
----
-
-## Repository Contents
-
-```
-modeler-hackathon-starter/
-├── README.md                      # This file
-├── download_dataset.sh            # Script to download dataset (RUN THIS FIRST!)
-├── sample_submission.csv          # Template for your answers
-├── example/                       # Self-contained setup + notebook
-│   ├── SETUP.md                   # Detailed installation instructions
-│   ├── requirements.txt           # Minimal deps for the quick example
-│   └── tools_guide.ipynb          # Getting started with the tools
-│
-├── dataset/                       # Downloaded dataset (created by script)
-│   ├── parquet/                   # 24 dimension and fact tables
-│   ├── logs/                      # 19 log files (JSONL)
-│   └── pdfs/                      # Contracts, policies, invoices
-│
-└── training_evals/                # 25 practice questions with answers
-    ├── README.md
-    ├── question_01.md
-    └── ... (25 total)
-```
-
----
-
 ## Quick Start
 
 ### 1. Download the Dataset (REQUIRED FIRST STEP)
@@ -162,6 +108,31 @@ Contestants have access to a pre-configured **MCP (Model Context Protocol) serve
 
 ---
 
+## Repository Contents
+
+```
+modeler-hackathon-starter/
+├── README.md                      # This file
+├── download_dataset.sh            # Script to download dataset (RUN THIS FIRST!)
+├── sample_submission.csv          # Template for your answers
+├── example/                       # Self-contained setup + notebook
+│   ├── SETUP.md                   # Detailed installation instructions
+│   ├── requirements.txt           # Minimal deps for the quick example
+│   └── tools_guide.ipynb          # Getting started with the tools
+│
+├── dataset/                       # Downloaded dataset (created by script)
+│   ├── parquet/                   # 24 dimension and fact tables
+│   ├── logs/                      # 19 log files (JSONL)
+│   └── pdfs/                      # Contracts, policies, invoices
+│
+└── training_evals/                # 25 practice questions with answers
+    ├── README.md
+    ├── question_01.md
+    └── ... (25 total)
+```
+
+---
+
 ## Understanding the Data
 
 ### Three Types of Data
@@ -215,6 +186,35 @@ See `sample_submission.csv` for the up-to-date template.
 - **OpenRouter (AI Models):** [openrouter.ai](https://openrouter.ai)
 - **MCP Server:** [fastmcp.cloud/app/antm-hack-example](https://fastmcp.cloud/app/antm-hack-example) | [Source Code](https://github.com/tdoehmen/mcp-server-motherduck-example)
 - **This Repo:** [github.com/TheoryVentures/modeler-hackathon-starter](https://github.com/TheoryVentures/modeler-hackathon-starter)
+
+---
+
+## Competition Structure
+
+### Rounds Overview
+
+**Training Round** (12:30 PM - 3:00 PM)
+- 10 questions with answers provided
+- Practice understanding the dataset
+- Test your approach
+- No submission required
+
+**Round 1** (3:00 PM - 4:15 PM)
+- 15 questions without answers
+- Submit your answers via the platform
+- Real-time leaderboard
+
+**Round 2** (4:15 PM - 5:30 PM)
+- 15 questions without answers
+- Submit your answers via the platform
+- Real-time leaderboard
+
+**Round 3** (5:30 PM - 6:00 PM)
+- 10 questions without answers
+- Submit your answers via the platform
+- Real-time leaderboard
+- Determines final rankings
+- Winners announced at 7:30 PM
 
 ---
 
