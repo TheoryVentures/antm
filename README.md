@@ -26,35 +26,30 @@ You'll work with:
 
 ## Competition Structure
 
-### Three Rounds
+### Rounds Overview
 
 **Training Round** (12:30 PM - 3:00 PM)
-- 25 questions with answers provided
+- 10 questions with answers provided
 - Practice understanding the dataset
 - Test your approach
 - No submission required
 
 **Round 1** (3:00 PM - 4:15 PM)
-- 30 questions without answers
+- 15 questions without answers
 - Submit your answers via the platform
 - Real-time leaderboard
 
 **Round 2** (4:15 PM - 5:30 PM)
-- 30 questions without answers
+- 15 questions without answers
 - Submit your answers via the platform
 - Real-time leaderboard
 
 **Round 3** (5:30 PM - 6:00 PM)
-- 20 questions without answers
+- 10 questions without answers
 - Submit your answers via the platform
 - Real-time leaderboard
 - Determines final rankings
 - Winners announced at 7:30 PM
-
-### Scoring
-- **Test Round:** 70% of final score
-- **Holdout Round:** 30% of final score
-- **Criteria:** Correctness (50%), Efficiency (25%), Explanation (25%)
 
 ---
 
