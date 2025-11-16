@@ -19,16 +19,16 @@ The script will automatically look for these files (plus `training-questions.md`
 
 Each question must include a fenced JSON block like the training example:
 
+````markdown
 ```json
 {
-  "question": "January 2023 saw a spike in item returns in one state. What percentage of December revenue in the biggest returns category should be discounted due to those returns?",
-  "state": "CA",
+  "question": "Store #5's operations team noticed inventory shortages from one warehouse in November 2022. Despite overall revenue growth, investigate which warehouse experienced an inventory shortage that affected Store #5, and identify which product category was most impacted by this shortage. What was the revenue change in dollars for Store #5 in this specific warehouse-category combination from October to November 2022?",
+  "warehouse_sk": 3,
   "category": "Jewelry",
-  "return_count": 2500,
-  "return_value": 691182.47,
-  "difficulty": 1
+  "revenue_impact": -32798.3
 }
 ```
+````
 
 When the script runs, it drops `question`/`difficulty` and writes the remaining key values (in order) into `col_1`-`col_n` for that row of the CSV.
 
