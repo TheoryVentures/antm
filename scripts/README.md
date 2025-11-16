@@ -36,10 +36,10 @@ When the script runs, it drops `question`/`difficulty` and writes the remaining 
 
 ### Quick Start
 
-```
-cd /path/to/modeler-hackathon-starter
-python3 scripts/questions_to_submission.py
+```bash
+cd scripts
+python3 questions_to_submission.py
 ```
 
-Add `--max-cols`, `--skip`, or `--start-index` if you need to customize column counts or offsets.
+This will create `submission.csv` in your current directory. Add `--max-cols`, `--skip`, or `--start-index` if you need to customize column counts or offsets.
 
