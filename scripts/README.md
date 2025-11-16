@@ -19,7 +19,6 @@ The script will automatically look for these files (plus `training-questions.md`
 
 Each question must include a fenced JSON block like the training example:
 
-```
 ```json
 {
   "question": "January 2023 saw a spike in item returns in one state. What percentage of December revenue in the biggest returns category should be discounted due to those returns?",
@@ -29,7 +28,6 @@ Each question must include a fenced JSON block like the training example:
   "return_value": 691182.47,
   "difficulty": 1
 }
-```
 ```
 
 When the script runs, it drops `question`/`difficulty` and writes the remaining key values (in order) into `col_1`-`col_n` for that row of the CSV.
