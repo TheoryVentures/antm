@@ -38,8 +38,8 @@ def parse_arguments() -> argparse.Namespace:
         "-o",
         "--output",
         type=Path,
-        default=Path("scripts/submission.csv"),
-        help="Destination CSV file (default: scripts/submission.csv).",
+        default=Path("submission.csv"),
+        help="Destination CSV file (default: submission.csv in current directory).",
     )
     parser.add_argument(
         "--skip",
@@ -167,11 +167,21 @@ def write_csv(
 def main() -> None:
     """CLI entrypoint."""
     args = parse_arguments()
+    
+    # Find repo root by looking for this script's location
+    script_path = Path(__file__).resolve()
+    repo_root = script_path.parent.parent  # scripts/questions_to_submission.py -> repo root
+    
+    # Resolve input paths relative to repo root
     inputs = args.inputs or DEFAULT_INPUT_FILES
-    inputs = [path if path.is_absolute() else Path.cwd() / path for path in inputs]
-    output_path = (
-        args.output if args.output.is_absolute() else Path.cwd() / args.output
-    )
+    inputs = [
+        path if path.is_absolute() else repo_root / path
+        for path in inputs
+    ]
+    
+    # Output path is relative to current working directory
+    output_path = args.output if args.output.is_absolute() else Path.cwd() / args.output
+    
     rows = build_rows(
         inputs=inputs,
         skip_fields=args.skip,
